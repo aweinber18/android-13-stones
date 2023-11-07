@@ -5,6 +5,8 @@ import android.os.Bundle;
 import com.example.thirteenstones.lib.DialogUtils;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,7 +17,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         findViewById(R.id.fab).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,6 +66,10 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private void startNextNewGame() {
+
+    }
+
     private void showStatistics() {
         Intent intent = new Intent(getApplicationContext(), StatisticsActivity.class);
         startActivity(intent);
@@ -72,10 +81,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showSettings() {
-        
-    }
-
-    private void startNextNewGame() {
         
     }
 

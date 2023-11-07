@@ -3,9 +3,17 @@
     <style name="Base.Theme.ThirteenStones" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">?attr/isLightTheme</item>
+    </style>
+    <style name="Theme.ThirteenStones.NoActionBar" >
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.ThirteenStones" parent="Base.Theme.ThirteenStones" />
+    <style name="Theme.ThirteenStones" parent="Theme.Material3.DayNight" />
 
     <style name="Theme.ThirteenStones.SplashScreenTheme">
         <item name="android:background">@drawable/splash_background</item>
