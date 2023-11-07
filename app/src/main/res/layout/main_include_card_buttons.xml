@@ -21,17 +21,14 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1"/>
+            style="@style/BorderlessButton13Stones"
+            android:text="@string/_1"/>
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2"/>
+            style="@style/BorderlessButton13Stones"
+            android:text="@string/_2"/>
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="3"/>
+            style="@style/BorderlessButton13Stones"
+            android:text="@string/_3"/>
 
     </LinearLayout>
 

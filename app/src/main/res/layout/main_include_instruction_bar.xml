@@ -18,5 +18,5 @@
         android:text="@string/banner_text"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textStyle="bold"
-        android:textColor="@android:color/primary_text_dark"/>
+        android:textColor="?attr/colorPrimary"/>
 </com.google.android.material.appbar.AppBarLayout>

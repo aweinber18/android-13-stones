@@ -41,5 +41,8 @@
     <string name="title_activity_statistics">Statistics</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+    <string name="_1">1</string>
+    <string name="_2">2</string>
+    <string name="_3">3</string>
 
 </resources>
