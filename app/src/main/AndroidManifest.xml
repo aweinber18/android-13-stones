@@ -10,17 +10,17 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ThirteenStones"
+        android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
             android:name=".activities.StatisticsActivity"
             android:exported="false"
             android:label="@string/title_activity_statistics"
-            android:theme="@style/Theme.ThirteenStones" />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.SplashActivity"
             android:exported="true"
-            android:theme="@style/Theme.ThirteenStones.SplashScreenTheme">
+            android:theme="@style/AppTheme.NoActionBar.SplashScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,7 +29,7 @@
         </activity>
         <activity
             android:name=".activities.MainActivity"
-            android:theme="@style/Theme.ThirteenStones">
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
 
