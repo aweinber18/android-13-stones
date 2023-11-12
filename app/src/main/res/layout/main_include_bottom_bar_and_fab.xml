@@ -24,7 +24,9 @@
                 android:layout_height="wrap_content"
                 android:gravity="start"
                 android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
-                android:textColor="?attr/colorSecondary" />
+                android:textColor="?attr/colorSecondary"
+                android:text="@string/current_player"
+                />
 
             <TextView
                 android:id="@+id/tv_status_stones_remaining"
@@ -32,7 +34,9 @@
                 android:layout_height="wrap_content"
                 android:gravity="start"
                 android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
-                android:textColor="?attr/colorTertiary" />
+                android:textColor="?attr/colorTertiary"
+                android:text="@string/stones_remaining_in_pile"
+                />
         </LinearLayout>
     </com.google.android.material.bottomappbar.BottomAppBar>
 
