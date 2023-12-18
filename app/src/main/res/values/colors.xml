@@ -1,10 +1,5 @@
 
 <resources>
-
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="backgroundDefaultColor">@android:color/background_light</color>
-
     <color name="seed">#187dff</color>
     <color name="md_theme_light_primary">#005BC1</color>
     <color name="md_theme_light_onPrimary">#FFFFFF</color>

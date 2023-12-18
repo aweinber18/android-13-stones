@@ -1,32 +1,33 @@
 package com.example.thirteenstones.activities;
+
+import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 import static com.example.thirteenstones.lib.DialogUtils.showInfoDialog;
 import static com.example.thirteenstones.models.ThirteenStones.getGameFromJSON;
 import static com.example.thirteenstones.models.ThirteenStones.getJSONFromGame;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import com.example.thirteenstones.R;
-import com.example.thirteenstones.models.ThirteenStones;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
-import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
+import com.example.thirteenstones.R;
+import com.example.thirteenstones.databinding.ActivityMainBinding;
+import com.example.thirteenstones.databinding.MainIncludeBottomBarAndFabBinding;
+import com.example.thirteenstones.models.ThirteenStones;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Locale;
-
 public class MainActivity extends AppCompatActivity {
     private ThirteenStones mGame;
     private TextView mTvStatusBarCurrentPlayer, mTvStatusBarStonesRemaining;
@@ -41,6 +42,10 @@ public class MainActivity extends AppCompatActivity {
     private String mKEY_AUTO_SAVE;
     private String mKEY_WIN_ON_LAST_PICK;
 
+    private ActivityMainBinding binding;
+    private MainIncludeBottomBarAndFabBinding bottomBarAndFabBinding;
+
+
     @Override
     protected void onStop() {
         super.onStop();
@@ -48,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void saveOrDeleteGameInSharedPrefs() {
-/*        SharedPreferences defaultSharedPreferences = getDefaultSharedPreferences(this);
+        SharedPreferences defaultSharedPreferences = getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = defaultSharedPreferences.edit();
 
         // Save current game or remove any prior game to/from default shared preferences
@@ -58,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
             editor.remove(mKEY_GAME);
         }
 
-        editor.apply();*/
+        editor.apply();
     }
 
     @Override
@@ -70,20 +75,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void restoreFromPreferences_SavedGameIfAutoSaveWasSetOn() {
-/*        SharedPreferences defaultSharedPreferences = getDefaultSharedPreferences(this);
+        SharedPreferences defaultSharedPreferences = getDefaultSharedPreferences(this);
         if (defaultSharedPreferences.getBoolean(mKEY_AUTO_SAVE, true)) {
             String gameString = defaultSharedPreferences.getString(mKEY_GAME, null);
             if (gameString != null) {
                 mGame = ThirteenStones.getGameFromJSON(gameString);
                 updateUI();
             }
-        }*/
+        }
     }
 
     private void restoreOrSetFromPreferences_AllAppAndGameSettings() {
-/*        SharedPreferences sp = getDefaultSharedPreferences(this);
+        SharedPreferences sp = getDefaultSharedPreferences(this);
         mUseAutoSave = sp.getBoolean(mKEY_AUTO_SAVE, true);
-        mGame.setWinnerIsLastPlayerToPick(sp.getBoolean(mKEY_WIN_ON_LAST_PICK, false));*/
+        mGame.setWinnerIsLastPlayerToPick(sp.getBoolean(mKEY_WIN_ON_LAST_PICK, false));
     }
 
     @Override
@@ -104,8 +109,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        setupToolbar();
+        setContentView();
+        setSupportActionBar(binding.includeToolbar.toolbar);
         setupViews();
         setupFAB();
         setupImagesIntArray();
@@ -113,14 +118,15 @@ public class MainActivity extends AppCompatActivity {
         startFirstGame();
     }
 
-    private void setupToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+    private void setContentView() {
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        bottomBarAndFabBinding = MainIncludeBottomBarAndFabBinding.bind(binding.getRoot());
+        setContentView(binding.getRoot());
     }
 
     private void setupViews() {
-        mTvStatusBarCurrentPlayer = findViewById(R.id.tv_status_current_player);
-        mTvStatusBarStonesRemaining = findViewById(R.id.tv_status_stones_remaining);
+        mTvStatusBarCurrentPlayer = bottomBarAndFabBinding.tvStatusCurrentPlayer; // findViewById(R.id.tv_status_current_player);
+        mTvStatusBarStonesRemaining = bottomBarAndFabBinding.tvStatusStonesRemaining; // findViewById(R.id.tv_status_stones_remaining);
         mSnackBar =
                 Snackbar.make(findViewById(android.R.id.content), getString(R.string.welcome),
                         Snackbar.LENGTH_LONG);
@@ -128,10 +134,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupFAB() {
-        FloatingActionButton fab = findViewById(R.id.fab);
         String title = getString(R.string.info_title);
 
-        fab.setOnClickListener(view -> showInfoDialog(this, title, mGame.getRules()));
+        bottomBarAndFabBinding.fab.setOnClickListener
+                (view -> showInfoDialog(this, title, mGame.getRules()));
     }
 
     private void setupImagesIntArray() {
@@ -250,8 +256,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void showSettings() {
         dismissSnackBarIfShown();
-/*        Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
-        settingsLauncher.launch(intent);*/
+        Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
+        settingsLauncher.launch(intent);
     }
 
     ActivityResultLauncher<Intent> settingsLauncher = registerForActivityResult(
